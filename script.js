@@ -1,4 +1,9 @@
 const menu=document.querySelector('.menu-toggle');const nav=document.querySelector('.nav');menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',open)});
 const questions=[...document.querySelectorAll('.question')];const progress=document.querySelector('.progress i');const quiz=document.querySelector('.quiz');const result=document.querySelector('.quiz-result');let step=0;
 document.querySelectorAll('.answers button').forEach(btn=>btn.addEventListener('click',()=>{step++;if(step<questions.length){questions[step-1].classList.remove('active');questions[step].classList.add('active');quiz.dataset.step=step+1;progress.style.width=`${(step+1)*25}%`;quiz.querySelector('.quiz-top span').textContent=`0${step+1} / 04`}else{questions.at(-1).classList.remove('active');result.style.display='block';progress.style.width='100%';quiz.querySelector('.quiz-top span').textContent='готово'}}));
-document.querySelectorAll('.add').forEach(btn=>btn.addEventListener('click',()=>{const bag=document.querySelector('.bag b');bag.textContent=Number(bag.textContent)+1;btn.textContent='✓';setTimeout(()=>btn.textContent='+',900)}));
+nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
+document.querySelector('.quiz-result .question-label').textContent='Демонстрация подбора';
+document.querySelector('.quiz-result h3').innerHTML='Ваша следующая<br><em>история</em>';
+document.querySelector('.quiz-result p:not(.question-label)').textContent='Это пример интерактивного подбора. Познакомьтесь с настоящей коллекцией WOW AROMA: подробные описания ароматов доступны в каталоге бренда.';
+const resultLink=document.querySelector('.quiz-result a');resultLink.href='https://wow-aroma.ru/catalog';resultLink.firstChild.textContent='Перейти в каталог ';
+document.querySelector('.bag').href='https://wow-aroma.ru/catalog';document.querySelector('.bag span').textContent='Магазин';document.querySelector('.bag b').textContent='↗';
